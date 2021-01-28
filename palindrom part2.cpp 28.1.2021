@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+/*
+Napisati program koji omogućava korisniku unos integer vrijednosti veće od 100. 
+Napisati funckiju koja će provjeriti da li je uneseni broj u isto vrijeme i prost i "palindrom", 
+odnosno da li je isti broj i kada se obrnnu sve cifre. Po potrebi koristiti dodatne funkcije.
+Npr. brojevi 383, 727, 757, 787, 797, 919, 929 su u isto vrijeme i prosti brojevi i "palindromi".
+*/
+bool prost(int broj);
+int unos();
+int obrniBroj(int broj);
+int broj;
+int main()
+{
+
+	
+	unos();
+	prost(broj);
+	if (prost(broj) && obrniBroj(broj))
+		cout << broj << "je prost i palindrom u isto vrijeme" << endl;
+	else
+		cout << broj << "nije palindrom" << endl;
+
+	return 0;
+}
+int unos()
+{
+	
+	do {
+
+		cout << "Unesite broj veci od 100." << endl;
+		cin >> broj;
+
+	} while (broj < 100);
+
+	return broj;
+
+}
+bool prost(int broj)
+{
+	for (int i = 2; i < broj / 2; i++) {
+		if (broj % i == 0) {
+			return false;
+
+		}
+		if (broj == 1) {
+			return false;
+		}
+	}
+	return true;
+}
+int obrniBroj(int broj)
+{
+	int temp = broj;
+	int noviBroj = 0;
+	while (temp)
+	{
+
+		int cifra = temp % 10;
+		noviBroj = noviBroj * 10 + cifra;
+		temp /= 10;
+
+	}
+	return noviBroj == broj;
+
+}
